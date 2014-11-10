@@ -1,0 +1,10 @@
+﻿RewriteEngine On
+
+php_flag magic_quotes_gpc 0
+
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+
+

@@ -1,0 +1,79 @@
+._brd{border:1px dashed #18347A;}
+._brdred{border:1px dashed red;}
+
+
+//#tablesb, #imagesb, #linksb, #colorsb, #textsb{display:none;text-align:left;}
+#textsb, #colorsb{height:120px;}
+#llink{border-bottom:1ps solid #100501;}
+
+#ctabs td{width:20px;height:20px;cursor:pointer;}
+#spacing{height:7px;}
+.ni{border:0px;}
+.colorkit{border-collapse:collapse;}
+.colorkit td{width:10px;height:10px;}
+
+#tablesb table ul{list-style-type: none;}
+#tablesb table ul li{padding-bottom:5px;}
+#tablesb table {text-align:left;}
+
+#tablesb input{width:30px;border:1px solid #acacb9;color:#2e2e6b;height:16px;}
+#colrs{width:40px;height:40px;}
+#hex{width:60px;}
+#panel a{cursor:pointer;}
+#panel a img{border:1px solid #acacb9;}
+#panel a:hover img{border:1px solid #2e2e6b;}
+
+
+
+
+#panel .colorkit a img{border:0px;}
+
+hr{ color: #A6A6A6; /*для IE */ background-color:#A6A6A6; /*для Firefox, Opera, Safari*/ border:0px none; height:1px; /* высота 1px IE, Firefox, Opera, Safari */ clear:both; /* для очистки, если тег идет после float елемента */ }
+
+.Window  { font-size:11px; font-family:Georgia;position : fixed; top : 100px; left : 300px; width : 494px;z-index:12;}
+#btns{padding-top:10px;width:230px;}
+.Window input{font-size:11px; font-family:Georgia;}
+.op{font-size:11px;font-family:Georgia;}
+.tout{
+background: transparent url(/zed/ico/topbgout.png) top left no-repeat;
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader
+(src='/zed/ico/topbgout.png',sizingMethod='scale');
+
+font-weight:bold;
+color:#fefef4;
+font-size:14px;
+padding-top: 10px;
+padding-left: 15px;
+cursor : default;
+height:20px;
+}
+.ton
+{
+background: transparent url(/zed/ico/topbgon.png) top left no-repeat;height:25px;
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader
+(src='/zed/ico/topbgon.png',sizingMethod='scale');
+font-family:Georgia;
+color:#fefef4;
+font-weight:bold;
+font-size:14px;
+padding-top: 10px;
+padding-left: 15px;
+cursor : default;
+height:20px;
+}
+#bottomline
+{
+height:6px; width:494px;
+background: transparent url(/zed/ico/bottombg.png) top left no-repeat;
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader
+(src='/zed/ico/bottombg.png',sizingMethod='scale');
+}
+#panel{	padding-bottom:10px;
+padding-top:10px;
+padding-left:15px;
+width:494px;
+text-align:left;
+background: transparent url(/zed/ico/bg.png);
+background-repeat:repeat-y;
+}
+

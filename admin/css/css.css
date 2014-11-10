@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@font-face {
+font-family: "PT Sans Bold";
+src: url("PTS75F.ttf");
+}
+@font-face {
+font-family: "PT Sans";
+src: url("PTS55F.ttf");
+}
+
+
+
+html{font-family:PT Sans;}
+
+.e{font-size:11px;color:#333333;}
+
+body{
+
+font-size:120%;    
+    }
+    
+a:link, a:visited{color:#008ACE;}
+a:hover{color:orange;} 
+hr{height:1px;}
+ul{}
+li{margin:5px 0 10px 0;}
+
+#langs a{margin:0 5px 0 5px;}
