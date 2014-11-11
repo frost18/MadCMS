@@ -77,10 +77,12 @@ class Site
 
 
 		//var_dump($this->Reg->getData());
+        
 
 		$module = $this->factory($url_params['class']);
 
 		$module->$url_params['method']($url_params['params']);
+        
 
 		//var_dump($this->template);
 		$this->Reg->add(array(

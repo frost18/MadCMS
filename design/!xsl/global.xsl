@@ -10,7 +10,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>MADCms: <xsl:value-of select="content/title" /></title>
+		<title> <xsl:value-of select="content/title" /></title>
 		<link type="text/css" rel="stylesheet" href="/design/css/global.css" />
 	</head>
 
