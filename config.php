@@ -36,7 +36,6 @@ $blocktypes = array(
 
 function __autoload($class_name)
 {
-    
     $path =  dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes'. DIRECTORY_SEPARATOR .$class_name;
     require_once $path.".php";
 }

@@ -9,7 +9,7 @@
  */
 return array(
 	array('main', '/', 'page:show', 'GET'),
-    array('main', '/(ln:str2)', 'page:show', 'GET'),    
+    array('main_ln', '/(ln:str2)', 'page:show', 'GET'),
 	array('page', '/(ln:str2)/page/(alias:any)', 'page:show', 'GET|POST'),
 	array('pages', '/pages', 'page:show', 'GET|POST'),
 	array('users', '/users', 'users:all', 'GET|POST'),

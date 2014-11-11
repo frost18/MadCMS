@@ -146,7 +146,7 @@ class UrlMatcher
 
         foreach ($routes as $route => $controller) {
             if (false !== strpos($route, '(')) {
-                $pattern = '#^' . $route . '$#s';
+                $pattern = '#^' . $route . '\/?$#s';
 
                 if (preg_match($pattern, $uri, $parameters)) {
                     return new MatchedRoute($controller, $this->processParameters($parameters));
