@@ -43,14 +43,14 @@ class Page extends AbstractModule
 	public function getOnePage($alias)
 	{
 		$sql = "
-		SELECT p.id as page_id, p.alias, p.pid, p.date, p.edit_date, l.key, l.value
+		SELECT p.id as page_id, p.alias, p.parent_id, p.date, p.edit_date, l.key, l.val
 			FROM pages AS p
 			LEFT JOIN lang AS l
-				ON l.pid = p.id
-			WHERE p.alias = :s AND p.visible = :s AND l.ln = :s
+				ON l.parent_id = p.id
+			WHERE p.alias = :s AND p.status = :s AND l.ln = :s
 		";
 
-		$tmp_data = $this->db->getAll($sql, $alias, 1, Lang::$ln);
+		$tmp_data = $this->db->getAll($sql, $alias, 'active', Lang::$ln);
 
 		$page = $tmp_data[0];
 		unset($page['key'], $page['value']);

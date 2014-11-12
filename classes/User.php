@@ -121,7 +121,7 @@ class User extends AbstractModule
 
 	public function login()
     {
-	    $this->template('login');
+	    $this->template = 'login';
 
         if ($this->Request->isPost())
         {
@@ -160,7 +160,7 @@ class User extends AbstractModule
 
     public function register()
     {
-	    $this->template('register');
+	    $this->template = 'register';
 
 	    if ($this->Request->isPost()) {
 
@@ -230,11 +230,4 @@ class User extends AbstractModule
 
 		return $user;
 	}
-
-	public function template($template)
-	{
-		$template = !empty($template) ? $template : $this->template;
-		$this->Site->template = $template;
-	}
-
 }

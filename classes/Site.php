@@ -85,6 +85,8 @@ class Site
         
 
 		//var_dump($this->template);
+		$this->getTemplate($module);
+
 		$this->Reg->add(array(
 			"service" => array(
 				"main_template" => $this->template
@@ -97,6 +99,11 @@ class Site
 		$xp = TEMPLATES. $this->template .'.xsl';
 		$x = $this->factory('xEngine');
 		$x->XSLTEngine($this->Reg->getData(),$xp,0);
+	}
+
+	private function getTemplate($module)
+	{
+		$this->template = !empty($module->template) ? $module->template : $this->template;
 	}
 
 	public function parseUrl()
