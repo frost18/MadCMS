@@ -10,13 +10,24 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title> <xsl:value-of select="content/title" /></title>
+		<title> <xsl:value-of select="content/page/title" /></title>
 		<link type="text/css" rel="stylesheet" href="/design/css/global.css" />
+
+		<meta name="keywords">
+			<xsl:attribute name="content">
+                <xsl:value-of select="content/page/keyw" />
+             </xsl:attribute>
+		</meta>
+		<meta name="description">
+			<xsl:attribute name="content">
+                <xsl:value-of select="content/page/desc" />
+             </xsl:attribute>
+		</meta>
 	</head>
 
 	<body>
 
-		<div>Шапка <xsl:value-of select="content/name" /> страницы</div>
+		<div>Шапка <xsl:value-of select="content/page/title" /> страницы</div>
 
 		<div>
 			<xsl:call-template name="cnt"/>

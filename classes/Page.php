@@ -19,6 +19,8 @@ class Page extends AbstractModule
 					"page" => $data
 				)
 			));
+		} else {
+			Error::instance()->error404();
 		}
 	}
 
@@ -53,13 +55,12 @@ class Page extends AbstractModule
 		$tmp_data = $this->db->getAll($sql, $alias, 'active', Lang::$ln);
 
 		$page = $tmp_data[0];
-		unset($page['key'], $page['value']);
+		unset($page['key'], $page['val']);
 
 		foreach ($tmp_data as $row)
 		{
-			$page[$row['key']] = $row['value'];
+			$page[$row['key']] = $row['val'];
 		}
-
 		return $page;
 	}
 }

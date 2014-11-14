@@ -4,8 +4,8 @@
 
 <xsl:template name="cnt">
 
-<h1>Привет!</h1>
-<h3>Я контент.Обращаюсь: <xsl:value-of select="module"/>  </h3>
+<h1><xsl:value-of select="content/page/title"/></h1>
+<div> <xsl:value-of select="content/page/text"/> </div>
 
 
 </xsl:template>

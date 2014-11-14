@@ -59,6 +59,7 @@ class Site
 		$this->Request = Request::instance();
 		$this->Router = $this->factory('Router', URL);
 		$this->Reg = $this->factory('Reg');
+		$module = null;
 
 		$url_params = $this->parseUrl();
 		//$this->Request->clearData();
@@ -79,13 +80,18 @@ class Site
 		//var_dump($this->Reg->getData());
         
 
-		$module = $this->factory($url_params['class']);
+		if (!empty($url_params))
+		{
+			$module = $this->factory($url_params['class']);
+			$module->$url_params['method']($url_params['params']);
+		} else {
+			Error::instance()->error404();
+		}
 
-		$module->$url_params['method']($url_params['params']);
-        
 
 		//var_dump($this->template);
 		$this->getTemplate($module);
+
 
 		$this->Reg->add(array(
 			"service" => array(
@@ -112,11 +118,7 @@ class Site
 		$r = $this->Router->match($this->Request->getMethod(), $this->Request->getPathInfo());
 
 		/* обработчик по умолчанию */
-		$route_params = array(
-			"class" => "Error",
-			"method" => "error404",
-			"params" => array()
-		);
+		$route_params = array();
 
 		/* обработчик полученный из парсинга урла */
 		if ($r != NULL)

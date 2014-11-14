@@ -1,10 +1,30 @@
 <?php
 
-class Error extends AbstractModule
+class Error
 {
 	public $template = 'error';
+	public $Site;
 
-	function error404()
+	protected static $_instance;
+
+	public static function instance()
+	{
+        if (is_null(self::$_instance))
+        {
+            self::$_instance = new self();
+        }
+
+		return self::$_instance;
+    }
+
+	private function __clone(){}
+
+	private function __construct()
+	{
+		$this->Reg = Site::instance()->factory('Reg');
+	}
+
+	public function error404()
 	{
 		$this->Reg->add(array(
 			"content" => array(
