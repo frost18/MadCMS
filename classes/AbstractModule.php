@@ -6,6 +6,7 @@ abstract class AbstractModule
 	public $Site;
 	public $Reg;
 	public $Request;
+	public $Router;
 
 	public $template = 'start';
 
@@ -15,5 +16,6 @@ abstract class AbstractModule
 		$this->db = $this->Site->db;
 		$this->Reg = $this->Site->Reg;
 		$this->Request = $this->Site->Request;
+		$this->Router = $this->Site->Router;
 	}
 }

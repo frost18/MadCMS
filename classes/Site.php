@@ -9,6 +9,7 @@ class Site
 	public $db;
 	public $Request;
 	public $Router;
+	public $Menu;
 	public $Admin;
 
 	public $user;
@@ -59,6 +60,8 @@ class Site
 		$this->Request = Request::instance();
 		$this->Router = $this->factory('Router', URL);
 		$this->Reg = $this->factory('Reg');
+		$this->Menu = $this->factory('Menu');
+
 		$module = null;
 
 		$url_params = $this->parseUrl();
@@ -88,6 +91,7 @@ class Site
 			Error::instance()->error404();
 		}
 
+		$this->Menu->initMenus();
 
 		//var_dump($this->template);
 		$this->getTemplate($module);
