@@ -34,8 +34,8 @@
 				<xsl:for-each select="content/menus/item[@position='top']">
 					<li>
 						<xsl:attribute name="class">
-							<xsl:if test="@selected=1">
-								<xsl:text> topselected</xsl:text>
+							<xsl:if test="@active=1">
+								<xsl:text>active</xsl:text>
 							</xsl:if>
 						</xsl:attribute>
 						<a>

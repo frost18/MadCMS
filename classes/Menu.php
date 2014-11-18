@@ -7,17 +7,20 @@ Class Menu extends AbstractModule
 		$data = $this->getMenus();
 		$menu = array();
 
+		$current_page = $this->Reg->get('content/page/page_id');
+
 		if (!empty($data))
 		{
 			foreach ($data as $key => $m)
 			{
 				$menu[$m['id']]=Array(
 					'__attr' => Array(
-						Array('__k'=>'id','__v'=>$m['id']),
-						Array('__k'=>'parent','__v'=>$m['parent']),
-				        Array('__k'=>'position','__v'=>$m['position']),
-				        Array('__k'=>'page_id','__v'=>$m['page_id']),
-				        Array('__k'=>'order','__v'=>$m['order'])
+						Array('__k' => 'id', '__v' => $m['id']),
+						Array('__k' => 'parent', '__v' => $m['parent_id']),
+				        Array('__k' => 'position', '__v' => $m['position']),
+				        Array('__k' => 'page_id', '__v' => $m['page_id']),
+				        Array('__k' => 'order', '__v' => $m['order']),
+				        Array('__k' => 'active', '__v' => (int)($current_page == $m['page_id'])),
 					),
 					'title'=>$m['name'],
 					'link'=>(!empty($m['custom_url']) ? $m['custom_url'] : $this->Router->generate($m['alias']))
