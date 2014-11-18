@@ -9,17 +9,18 @@ Class Menu extends AbstractModule
 
 		if (!empty($data))
 		{
-			foreach ($data as $key => $menu)
+			foreach ($data as $key => $m)
 			{
-				$menu[]=Array(
+				$menu[$m['id']]=Array(
 					'__attr' => Array(
-						Array('__k'=>'id','__v'=>$menu['id']),
-						Array('__k'=>'parent','__v'=>$menu['parent']),
-				        Array('__k'=>'position','__v'=>$menu['position']),
-				        Array('__k'=>'page_id','__v'=>$menu['page_id'])
+						Array('__k'=>'id','__v'=>$m['id']),
+						Array('__k'=>'parent','__v'=>$m['parent']),
+				        Array('__k'=>'position','__v'=>$m['position']),
+				        Array('__k'=>'page_id','__v'=>$m['page_id']),
+				        Array('__k'=>'order','__v'=>$m['order'])
 					),
-					'title'=>$menu['name'],
-					'link'=>(!empty($menu['custom_url']) ? $menu['custom_url'] : $this->Router->generate($menu['alias']))
+					'title'=>$m['name'],
+					'link'=>(!empty($m['custom_url']) ? $m['custom_url'] : $this->Router->generate($m['alias']))
 				);
 			}
 		}
@@ -29,13 +30,15 @@ Class Menu extends AbstractModule
 				'menus' => $menu
 			)
 		));
-		var_dump($menu);
+		echo "<pre><!--";
+		var_dump($this->Reg->getData());
+		echo "--></pre>";
 	}
 
 	public function getMenus()
 	{
 		$sql = "SELECT * FROM `menus` as m LEFT JOIN `pages` as p ON p.`id` = m.`page_id`
-				WHERE p.`status` = :s AND m.`ln` = :s";
+				WHERE p.`status` = :s AND m.`ln` = :s ORDER BY m.`order` ASC";
 
 		$data = $this->db->getAll($sql, 'active', Lang::$ln);
 

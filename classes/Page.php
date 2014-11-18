@@ -5,12 +5,14 @@ class Page extends AbstractModule
 
 	public $template = 'page';
 
-	public function show($params)
+	public function show($params = array())
 	{
-		if (!empty($params['alias']))
+		if (empty($params['alias']))
 		{
-			$data = $this->getOnePage($params['alias']);
+			$params['alias'] = '/';
 		}
+
+		$data = $this->getOnePage($params['alias']);
 
 		if (!empty($data))
 		{
@@ -45,7 +47,7 @@ class Page extends AbstractModule
 	public function getOnePage($alias)
 	{
 		$sql = "
-		SELECT p.id as page_id, p.alias, p.parent_id, p.date, p.edit_date, l.key, l.val
+		SELECT p.id as page_id, p.alias, p.parent_id, p.date, p.edit_date, l.k, l.val
 			FROM pages AS p
 			LEFT JOIN lang AS l
 				ON l.parent_id = p.id
@@ -55,11 +57,11 @@ class Page extends AbstractModule
 		$tmp_data = $this->db->getAll($sql, $alias, 'active', Lang::$ln);
 
 		$page = $tmp_data[0];
-		unset($page['key'], $page['val']);
+		unset($page['k'], $page['val']);
 
 		foreach ($tmp_data as $row)
 		{
-			$page[$row['key']] = $row['val'];
+			$page[$row['k']] = $row['val'];
 		}
 		return $page;
 	}

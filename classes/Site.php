@@ -80,8 +80,6 @@ class Site
 		$this->user->init();
 
 
-		//var_dump($this->Reg->getData());
-        
 
 		if (!empty($url_params))
 		{

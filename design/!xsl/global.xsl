@@ -29,6 +29,30 @@
 
 		<div>Шапка <xsl:value-of select="content/page/title" /> страницы</div>
 
+		<div class="top-menu">
+			<ul>
+				<xsl:for-each select="content/menus/item[@position='top']">
+					<li>
+						<xsl:attribute name="class">
+							<xsl:if test="@selected=1">
+								<xsl:text> topselected</xsl:text>
+							</xsl:if>
+						</xsl:attribute>
+						<a>
+							<xsl:attribute name="href">
+								<xsl:if test="link != '' ">
+									<xsl:value-of select="link"/>
+								</xsl:if>
+							</xsl:attribute>
+							<xsl:value-of select="title"/>
+						</a>
+					</li>
+				</xsl:for-each>
+			</ul>
+			<div class="clear"> </div>
+		</div>
+
+
 		<div>
 			<xsl:call-template name="cnt"/>
 		</div>

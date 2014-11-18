@@ -9,8 +9,8 @@
 <h1><xsl:value-of select="content/page/title"/></h1>
 <xsl:value-of select="content/page/text"/>
 
-<p><a href="/en/page/about">English</a></p>
-<p><a href="/ru/page/about">Russian</a></p>
+<p><a href="/en/about">English</a></p>
+<p><a href="/ru/about">Russian</a></p>
 
 
 </xsl:template>

@@ -45,10 +45,35 @@ class Router
         return $this->getMatcher()->match($method, $uri);
     }
 
-    public function generate($name, array $parameters = array(), $absolute = false)
+    /*public function generate($name, array $parameters = array(), $absolute = false)
     {
         return $this->getGenerator()->generate($name, $parameters, $absolute);
+    }*/
+    public function generate($alias, $ln = '', $absolute = true)
+    {
+        if (is_array($alias))
+        {
+            $alias = implode(US, $alias);
+        }
+
+        $alias = trim($alias, " /\\");
+
+        /* для генирации урлов на другую языковую версию сайта */
+        if (empty($ln))
+        {
+            $ln = Lang::$ln;
+        }
+
+        /* вернуть абсолютный или относительный урл */
+        $host = US;
+        if ($absolute)
+        {
+            $host = URL;
+        }
+
+        return $host . (!empty($alias) ? Lang::$ln . US . $alias . US : '');
     }
+
 
     /**
      * @return UrlMatcher

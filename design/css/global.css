@@ -96,3 +96,14 @@ form p {
 .fl {
 	float: left;
 }
+
+.clear
+{
+	clear: both;
+}
+
+.top-menu li
+{
+	float: left;
+	margin: 5px 10px;
+}
