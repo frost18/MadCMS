@@ -79,8 +79,6 @@ class Site
 		$this->user = $this->factory('User');
 		$this->user->init();
 
-
-
 		if (!empty($url_params))
 		{
 			$module = $this->factory($url_params['class']);
@@ -174,6 +172,42 @@ class Site
 		    header('LOCATION: login.php');
 		    exit;
 		}
+	}
+
+	/**
+	 * Получает массив с данными о странице и записях из таблицы lang и объеденяет все
+	 * в одну запись для каждой страницы с параметрами
+	 * Формирует урл страницы
+	 *
+	 * @param $arr
+	 * @param bool $one
+	 *
+	 * @return array|mixed
+	 */
+	public function prepareData($arr, $one = false)
+	{
+		$item = array();
+
+		foreach ($arr as $row)
+		{
+			if (empty($item[$row['id']]))
+			{
+				$item[$row['id']] = $row;
+				unset($item[$row['id']]['k'], $item[$row['id']]['val']);
+
+				/* формирование урла страницы */
+				$item[$row['id']]['link'] = (!empty($row['custom_url']) ? $row['custom_url'] : $this->Router->generate($row['alias']));
+			}
+
+			$item[$row['id']][$row['k']] = $row['val'];
+		}
+
+		if ($one)
+		{
+			$item = array_shift($item);
+		}
+
+		return $item;
 	}
 }
 

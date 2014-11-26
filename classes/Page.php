@@ -7,12 +7,13 @@ class Page extends AbstractModule
 
 	public function show($params = array())
 	{
-		if (empty($params['alias']))
+		$alias = trim($params['alias'], "/");
+		if (empty($alias))
 		{
-			$params['alias'] = '/';
+			$alias = '/';
 		}
 
-		$data = $this->getOnePage($params['alias']);
+		$data = $this->getOnePage($alias);
 
 		if (!empty($data))
 		{
@@ -47,22 +48,59 @@ class Page extends AbstractModule
 	public function getOnePage($alias)
 	{
 		$sql = "
-		SELECT p.id as page_id, p.alias, p.parent_id, p.date, p.edit_date, l.k, l.val
+		SELECT p.*, l.k, l.val, f.path, f.date, f.id as photo_id, f.parent_id, f.module
 			FROM pages AS p
 			LEFT JOIN lang AS l
 				ON l.parent_id = p.id
+			LEFT JOIN photos AS f
+				ON f.parent_id = p.id
 			WHERE p.alias = :s AND p.status = :s AND l.ln = :s
 		";
 
-		$tmp_data = $this->db->getAll($sql, $alias, 'active', Lang::$ln);
+		$tmp_data = $this->db->getAll($sql, $alias, 'active', Lang::$ln, 'deb');
 
-		$page = $tmp_data[0];
-		unset($page['k'], $page['val']);
+		$page = $this->Site->prepareData($tmp_data, true);
 
-		foreach ($tmp_data as $row)
+		switch ($page['module'])
 		{
-			$page[$row['k']] = $row['val'];
+			case 'articles':
+				$page['childs'] = $this->getChilds($page['id']);
+				$this->template = 'articles';
+			break;
+
+			case 'article':
+				$this->template = 'article';
+			break;
+
+			case 'newsall':
+			case 'news':
+			case 'gallery':
+				break;
+
+			default:
+				break;
 		}
+
+
 		return $page;
 	}
+
+	public function getChilds($ids)
+	{
+		if (is_array($ids))
+		{
+			$ids = implode(",", $ids);
+		}
+
+		$sql = "SELECT p.*, l.k, l.val
+ 				FROM pages as p LEFT JOIN lang as l ON p.id = l.parent_id
+				WHERE p.parent_id IN (:s) AND p.status = :s AND l.k != :s";
+
+		$data = $this->db->getAll($sql, $ids, 'active', 'text');
+
+		$items = $this->Site->prepareData($data);
+
+		return $items;
+	}
+
 }

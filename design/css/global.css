@@ -111,3 +111,18 @@ form p {
 {
 	color: #117700;
 }
+
+.articles .article
+{
+	margin: 10px;
+}
+.articles .article .title
+{
+	font-weight: bold;
+	margin: 5px 0;
+}
+.articles .article .date
+{
+	font-style: italic;
+	margin: 3px;
+}

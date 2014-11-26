@@ -479,10 +479,19 @@ class Database
 	private function prepareQuery($args)
 	{
 		$query = '';
+		$debug = false;
 		$raw   = array_shift($args);
 		$array = preg_split('~(\:[nsiuap])~u',$raw,null,PREG_SPLIT_DELIM_CAPTURE);
+
+		if (end($args) == 'deb')
+		{
+			$debug = true;
+			array_pop($args);
+		}
+
 		$anum  = count($args);
 		$pnum  = floor(count($array) / 2);
+
 		if ( $pnum != $anum )
 		{
 			$this->error("Number of args ($anum) doesn't match number of placeholders ($pnum) in [$raw]");
@@ -520,6 +529,12 @@ class Database
 			}
 			$query .= $part;
 		}
+
+		if ($debug)
+		{
+			echo "\r\n" . $query . "\r\n";
+		}
+
 		return $query;
 	}
 

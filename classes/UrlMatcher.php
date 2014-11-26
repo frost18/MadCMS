@@ -21,8 +21,8 @@ class UrlMatcher
 
     private $patterns = array(
         'num' => '[0-9]+',
-        'str' => '[a-zA-Z\.\-_%]+',
-        'any' => '[a-zA-Z0-9\.\-_%]+',
+        'str' => '[a-zA-Z\/\.\-_%]+',
+        'any' => '[a-zA-Z0-9\/\.\-_%]+',
 	    'str2' => '[a-zA-Z]{2}'
     );
 
