@@ -10,6 +10,7 @@ class Site
 	public $Request;
 	public $Router;
 	public $Menu;
+	public $Image;
 	public $Admin;
 
 	public $user;
@@ -61,6 +62,7 @@ class Site
 		$this->Router = $this->factory('Router', URL);
 		$this->Reg = $this->factory('Reg');
 		$this->Menu = $this->factory('Menu');
+		$this->Image = $this->factory('Image');
 
 		$module = null;
 
@@ -86,6 +88,9 @@ class Site
 		} else {
 			Error::instance()->error404();
 		}
+
+		$this->Image->getImages($this->Reg->get('content/page/id'));
+
 
 		$this->Menu->initMenus();
 

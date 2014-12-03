@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <xsl:import href="global.xsl"/>
 <xsl:import href="login.xsl"/>
+<xsl:import href="images.xsl"/>
 
 <xsl:template name="cnt">
 
@@ -13,7 +14,9 @@
 	<div class="brief"><xsl:value-of select="content/page/text" /></div>
 </div>
 
-
+<div class="images">
+	<xsl:call-template name="images"/>
+</div>
 </xsl:template>
 </xsl:stylesheet>
 

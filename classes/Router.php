@@ -61,7 +61,13 @@ class Router
         /* для генирации урлов на другую языковую версию сайта */
         if (empty($ln))
         {
-            $ln = Lang::$ln;
+            $ln = Lang::$ln . US;
+        }
+
+        /* для генерации пустых урлов, например для картинок */
+        if ($ln == 'empty')
+        {
+            $ln = '';
         }
 
         /* вернуть абсолютный или относительный урл */
@@ -71,7 +77,7 @@ class Router
             $host = URL;
         }
 
-        return $host . (!empty($alias) ? Lang::$ln . US . $alias . US : '');
+        return $host . (!empty($alias) ? $ln . $alias : '');
     }
 
 

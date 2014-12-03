@@ -48,7 +48,7 @@ class Page extends AbstractModule
 	public function getOnePage($alias)
 	{
 		$sql = "
-		SELECT p.*, l.k, l.val, f.path, f.date, f.id as photo_id, f.parent_id, f.module
+		SELECT p.*, l.k, l.val, f.path, f.date, f.id as photo_id, f.parent_id
 			FROM pages AS p
 			LEFT JOIN lang AS l
 				ON l.parent_id = p.id
@@ -57,7 +57,7 @@ class Page extends AbstractModule
 			WHERE p.alias = :s AND p.status = :s AND l.ln = :s
 		";
 
-		$tmp_data = $this->db->getAll($sql, $alias, 'active', Lang::$ln, 'deb');
+		$tmp_data = $this->db->getAll($sql, $alias, 'active', Lang::$ln);
 
 		$page = $this->Site->prepareData($tmp_data, true);
 
@@ -80,7 +80,6 @@ class Page extends AbstractModule
 			default:
 				break;
 		}
-
 
 		return $page;
 	}
